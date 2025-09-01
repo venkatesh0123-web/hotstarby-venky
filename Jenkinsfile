@@ -19,16 +19,17 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-      stage('sonar') {
+  stage('SonarQube Analysis') {
     steps {
         sh '''
-            mvn sonar:sonar \
+            mvn clean verify sonar:sonar \
             -Dsonar.projectKey=hotspot \
             -Dsonar.host.url=http://13.48.42.162:9000 \
             -Dsonar.login=2d1669ed9bf092259b3c3017b684b5449a478abb
         '''
     }
 }
+
 
          stage('artifact') {
             steps {
