@@ -24,6 +24,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker build -t hotstar:v1 -f Dockerfile .'
+                ''' 
             }
         }
              
