@@ -26,6 +26,7 @@ pipeline {
                     sh 'docker build -t hotstar:v1 -f Dockerfile .'
             }
         }
+             
         stage('Deploy Container') {
             steps {
                 sh '''
