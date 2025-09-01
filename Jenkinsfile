@@ -38,7 +38,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -t hotstar:v1 -f /var/lib/jenkins/workspace/hotspot/Dockerfile /var/lib/jenkins/workspace/hotspot
+                    docker build -t hotstar:v1 -f Dockerfile .'
                 '''
             }
         }
