@@ -19,14 +19,17 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-         stage('sonar') {
-            steps {
-                mvn sonar:sonar \
-  -Dsonar.projectKey=hotspot \
-  -Dsonar.host.url=http://13.48.42.162:9000 \
-  -Dsonar.login=2d1669ed9bf092259b3c3017b684b5449a478abb
-            }
-        }
+      stage('sonar') {
+    steps {
+        sh '''
+            mvn sonar:sonar \
+            -Dsonar.projectKey=hotspot \
+            -Dsonar.host.url=http://13.48.42.162:9000 \
+            -Dsonar.login=2d1669ed9bf092259b3c3017b684b5449a478abb
+        '''
+    }
+}
+
          stage('artifact') {
             steps {
                 nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: 'target/myapp.war', type: 'war']], 
