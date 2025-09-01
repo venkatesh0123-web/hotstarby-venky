@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f con8 || true
-                    docker run -d --name con8 -p 8008:8080 hotstar:v1
+                    docker run -d --name con8 -p 9943:8080 hotstar:v1
                 '''
             }
         }
