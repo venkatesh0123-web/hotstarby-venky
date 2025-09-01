@@ -22,7 +22,7 @@ pipeline {
 
         stage('artifact') {
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: 'target/myapp.war', type: '.war']], credentialsId: 'nexuscreds', groupId: 'in.reyaz', nexusUrl: '13.51.197.175:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'hotspot', version: '8.3.3-SNAPSHOT'
+               nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: '**/*.war', type: 'war']], credentialsId: 'nexuscreds', groupId: 'in.reyaz', nexusUrl: '13.51.197.175:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'hotspot', version: '8.3.3-SNAPSHOT'
             }
         }
 
