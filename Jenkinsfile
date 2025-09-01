@@ -38,7 +38,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker rmi -f hotstar:v1 || true
                     docker build -t hotstar:v1 -f /var/lib/jenkins/workspace/hotspot/Dockerfile /var/lib/jenkins/workspace/hotspot
                 '''
             }
