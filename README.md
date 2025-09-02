@@ -1,2 +1,2 @@
-33# hotstarby
+# hotstarby
 naa hotstar
