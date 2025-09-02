@@ -24,14 +24,15 @@ pipeline {
 
          
 
-        stage('Build Docker Image') {
-            steps {
-                sh '''
-                    docker rmi -f hotstar:v1 || true
-                    docker build -t hotstar:v1 -f /var/lib/jenkins/workspace/prasanth  project/Dockerfile /var/lib/jenkins/workspace/prasanth  project
-                '''
-            }
-        }
+       stage('Build Docker Image') {
+    steps {
+        sh '''
+          docker rmi -f hotstar:v1 || true
+          docker build -t hotstar:v1 -f /var/lib/jenkins/workspace/prasanth/project/Dockerfile /var/lib/jenkins/workspace/prasanth/project
+        '''
+    }
+}
+
 
         stage('Deploy Container') {
             steps {
