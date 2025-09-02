@@ -1,2 +1,1 @@
-# hotstarby
 naa hotstar
