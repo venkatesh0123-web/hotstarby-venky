@@ -19,6 +19,31 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+  stage('SonarQube Analysis') {
+    steps {
+        sh '''
+            mvn clean verify sonar:sonar \
+            -Dsonar.projectKey=hotspot \
+            -Dsonar.host.url=http://13.48.42.162:9000 \
+            -Dsonar.login=2d1669ed9bf092259b3c3017b684b5449a478abb
+        '''
+    }
+}
+
+
+         stage('artifact') {
+            steps {
+                nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: 'target/myapp.war', type: 'war']], 
+  credentialsId: 'nexuscreds',
+  groupId: 'in.reyaz',
+  nexusUrl: '13.51.197.175:8081',
+  nexusVersion: 'nexus3',
+  protocol: 'http',
+  repository: 'hotspot',
+  version: '8.3.3-SNAPSHOT'
+
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -33,7 +58,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f con8 || true
-                    docker run -d --name con8 -p 8008:8080 hotstar:v1
+                    docker run -d --name con8 -p 9943:8080 hotstar:v1
                 '''
             }
         }
