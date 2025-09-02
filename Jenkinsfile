@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -21,24 +20,11 @@ pipeline {
             }
         }
 
-         stage('artifact') {
-            steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: 'target/myapp.war', type: 'war']], 
-  credentialsId: 'nexuscreds',
-  groupId: 'in.reyaz',
-  nexusUrl: '13.51.197.175:8081',
-  nexusVersion: 'nexus3',
-  protocol: 'http',
-  repository: 'hotspot',
-  version: '8.3.3-SNAPSHOT'
-
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -t hotstar:v1 -f Dockerfile .'
+                    docker rmi -f hotstar:v1 || true
+                    docker build -t hotstar:v1 -f /var/lib/jenkins/workspace/hotstar/Dockerfile /var/lib/jenkins/workspace/hotstar
                 '''
             }
         }
@@ -47,7 +33,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f con8 || true
-                    docker run -d --name con8 -p 9943:8080 hotstar:v1
+                    docker run -d --name con8 -p 8008:8080 hotstar:v1
                 '''
             }
         }
