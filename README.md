@@ -1,2 +1,3 @@
 naa hotstar
+mana hotstar
 ....
