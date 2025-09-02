@@ -38,7 +38,12 @@ pipeline {
             }
         }
 
-        stage('Docker Swarm Deploy') {
+        stage('Check Docker') {
+            steps {
+        sh 'docker ps'
+    }
+}
+         stage('Docker Swarm Deploy') {
             steps {
                 sh '''
                     docker service update --image hotstar:v1 hotstarserv || \
