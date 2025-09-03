@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Harsha6404/hotstarby.git'
+                git branch: 'main', url: 'https://github.com/venkatesh0123-web/hotstarby-venky.git'
 
                 sh 'pwd'
                 sh 'ls -l'
