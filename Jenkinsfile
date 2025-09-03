@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from main branch
-                git branch: 'main', url: 'https://github.com/Harsha6404/hotstarby.git'
+                git branch: 'main', url: 'https://github.com/Naren-05/hotstarby.git'
 
                 // Verify files
                 sh 'pwd'
@@ -24,6 +24,8 @@ pipeline {
             steps {
                 sh '''
                     docker rmi -f hotstar:v1 || true
+                    docker build -t hotstar:v1 -f /var/lib/jenkins/workspace/hotstar/Dockerfile /var/lib/jenkins/workspace/hotstar
+
                     docker build -t hotstar:v1 -f /var/lib/jenkins/workspace/hoststar_by_venky/Dockerfile /var/lib/jenkins/workspace/hoststar_by_venky
                 '''
             }
