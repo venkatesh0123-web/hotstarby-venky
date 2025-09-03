@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh '''
                     docker rmi -f project hotstar:v1 || true
-                    docker build -t project hotstar:v1 -f /var/lib/jenkins/workspace/hotstar/Dockerfile /var/lib/jenkins/workspace/hotstar
+                    docker build -t project hotstar:v1 -f /var/lib/jenkins/workspace/project hotstar/Dockerfile /var/lib/jenkins/workspace/project hotstar
                 '''
             }
         }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f con8 || true
-                    docker run -d --name con8 -p 8008:8080 hotstar:v1
+                    docker run -d --name con8 -p 8008:8080 project hotstar:v1
                 '''
             }
         }
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sh '''
                     docker service update --image project hotstar:v1 hotstarserv || \
-                    docker service create --name project hotstarserv -p 8009:8080 --replicas=10 hotstar:v1
+                    docker service create --name project hotstarserv -p 8009:8080 --replicas=10 projec hotstar:v1
                 '''
             }
         }
