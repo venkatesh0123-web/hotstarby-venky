@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from main branch
-                git branch: 'main', url: 'https://github.com/Harsha6404/hotstarby.git'
+                git branch: 'main', url: 'https://github.com/prasanth-1243/hotstarby.git'
 
                 // Verify files
                 sh 'pwd'
@@ -19,6 +19,8 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+ feature-hotstar-webpage
+     
 
         stage('Build Docker Image') {
             steps {
@@ -29,14 +31,20 @@ pipeline {
             }
         }
 
+
         stage('Deploy Container') {
             steps {
                 sh '''
                     docker rm -f con8 || true
-                    docker run -d --name con8 -p 8008:8080 hotstar:v1
+ feature-hotstar-webpage
+                    docker run -d --name con8 -p 9943:8080 hotstar:v1
                 '''
             }
         }
 
+                    docker run -d --name con8 -p 8008:8080 hotstar:v1
+                '''
+            }
+        }
     }
 }
