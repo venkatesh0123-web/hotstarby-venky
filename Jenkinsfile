@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sh '''
                     docker service update --image project hotstar:v1 hotstarserv || \
-                    docker service create --name project hotstarserv -p 8009:8080 --replicas=10 projec hotstar:v1
+                    docker service create --name project hotstarserv -p 8009:8080 --replicas=10 project hotstar:v1
                 '''
             }
         }
